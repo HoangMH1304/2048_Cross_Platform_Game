@@ -1,5 +1,5 @@
 # 2048_pygame
-Bài Tập Lớn Nhóm 4 Python Thầy Hùng
+Bài Tập Lớn Python Nhóm 4 Thầy Hùng
 
 Thành viên:
 - Mai Huy Hoàng
