@@ -12,4 +12,4 @@ Mô tả: 2048 chơi trên một lưới vuông 4×4. Mỗi lần di chuyển ng
 
 Ghi chú: 
 + note.txt là file chứa các ghi chú về câu lệnh phức tạp để hiểu cách thức hoạt động
-+ ... là file báo cáo của nhóm về đề tài
++ [04]_[STTNHOMBAITL].docx là file báo cáo của nhóm về đề tài
