@@ -10,10 +10,6 @@ Mô tả: 2048 chơi trên một lưới vuông 4×4. Mỗi lần di chuyển ng
 
 - Cách chơi: Sử dụng 4 phím điều hướng (Up, Down, Left, Right) trên bàn phím máy tính để di chuyển các ô vuông. Khi hiện thông báo Game Over, ấn phím Enter để chơi lại. 
 
-Ý tưởng:
-- Tạo ma trận 4x4
-- 
-
 Ghi chú: 
 + note.txt là file chứa các ghi chú về câu lệnh phức tạp để hiểu cách thức hoạt động
 + ... là file báo cáo của nhóm về đề tài
