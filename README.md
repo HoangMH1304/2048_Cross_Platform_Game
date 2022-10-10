@@ -12,4 +12,4 @@ Cách chơi: Sử dụng 4 phím điều hướng (Up, Down, Left, Right) trên 
 
 Ghi chú: 
 + note.txt là file chứa các ghi chú về câu lệnh phức tạp để hiểu cách thức hoạt động
-+ [04]_[STTNHOMBAITL].docx là file báo cáo của nhóm về đề tài
++ [04]_[STTNHOMBAITL].pdf là file báo cáo của nhóm về đề tài
