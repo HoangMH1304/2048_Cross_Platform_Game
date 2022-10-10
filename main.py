@@ -1,8 +1,6 @@
-from pickle import TRUE
-from re import T
-from turtle import color
 import pygame
 import random
+
 pygame.init()
 
 # initial set up: khởi tạo
@@ -15,7 +13,7 @@ fps = 30
 font = pygame.font.Font('freesansbold.ttf', 24)
 
 # 2048 game color library
-colors = {0: (204, 192, 179),
+colors = {0: (204, 192, 179),   #không hiển thị số 0
           2: (238, 228, 218),
           4: (237, 224, 200),
           8: (242, 177, 121),
@@ -27,9 +25,9 @@ colors = {0: (204, 192, 179),
           512: (237, 200, 80),
           1024: (237, 197, 63),
           2048: (237, 194, 46),
-          'light text': (249, 246, 242),
-          'dark text': (119, 110, 101),
-          'other': (0, 0, 0),
+          'light text': (249, 246, 242),   #màu chữ từ 2 - 8
+          'dark text': (119, 110, 101),    #màu chữ 8 - 2048
+          'other': (0, 0, 0),               #số lớn hơn 2048
           'bg': (187, 173, 160)}
 
 # game variables initialize
@@ -44,7 +42,7 @@ init_high = int(file.readline())
 file.close()
 high_score = init_high
 
-# draw game over and restart text
+# draw game over and restart text (step 7)
 def draw_over():
     pygame.draw.rect(screen, 'black', [50, 200, 300, 100], 0, 10)
     game_over_text1 = font.render('Game Over!', True, 'white')
@@ -52,7 +50,7 @@ def draw_over():
     screen.blit(game_over_text1, (130, 215))
     screen.blit(game_over_text2, (70, 255))
 
-#take your turn base on direction
+#take your turn base on direction (step 5)
 def take_turn(direction, board):
     # global score
     merged = [[False for _ in range(4)] for _ in range(4)]
@@ -104,7 +102,6 @@ def turn_down(board, merged):
                     # score += board[3 - i + shift][j]
                     board[2 - i + shift][j] = 0
                     merged[3 - i + shift][j] = True
-
 
 def turn_left(board, merged):
     global score
@@ -199,7 +196,8 @@ def draw_pieces(board):
 
 
 # main game loop
-run = TRUE
+run = True
+
 while run:
     timer.tick(fps)  # thiết lập fps cho game
     screen.fill('gray')  # thiết lập nền xám làm background
@@ -234,7 +232,7 @@ while run:
                 direction = 'LEFT'
             if event.key == pygame.K_RIGHT:
                 direction = 'RIGHT'
-                
+
             if game_over:
                 if event.key == pygame.K_RETURN:
                     board_values = [[0 for _ in range(4)] for _ in range(4)]
@@ -247,4 +245,5 @@ while run:
     if score > high_score:
         high_score = score
     pygame.display.flip()  # cập nhật nội dung TOÀN BỘ màn hình
+
 pygame.quit
