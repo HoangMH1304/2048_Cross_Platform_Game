@@ -1,7 +1,7 @@
 import pygame
 import random
 
-pygame.init() #khởi tạo để sử dụng các hàm của pygame
+pygame.init()
 
 # initial set up: khởi tạo
 WIDTH = 400
@@ -43,7 +43,7 @@ init_high = int(file.readline())
 file.close()
 high_score = init_high
 
-# draw game over and restart text
+# draw game over and restart text (step 7)
 def draw_over():
     pygame.draw.rect(screen, 'black', [50, 200, 300, 100], 0, 10)
     game_over_text1 = font.render('Game Over!', True, 'white')
@@ -51,7 +51,7 @@ def draw_over():
     screen.blit(game_over_text1, (130, 215))
     screen.blit(game_over_text2, (70, 255))
 
-#take your turn base on direction
+#take your turn base on direction (step 5)
 def take_turn(direction, board):
     # global score
     merged = [[False for _ in range(4)] for _ in range(4)]
@@ -209,8 +209,8 @@ def draw_pieces(board):
 run = True
 
 while run:
-    timer.tick(fps)  
-    screen.fill('gray')  
+    timer.tick(fps)  # thiết lập fps cho game
+    screen.fill('gray')  # thiết lập nền xám làm background
     draw_board()
     draw_pieces(board_values)
 
