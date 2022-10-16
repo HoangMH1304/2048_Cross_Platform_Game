@@ -36,7 +36,6 @@ game_over = False
 spawn_new = True
 init_count = 0
 direction = ''
-shiftable = False
 score = 0
 file = open('high_score', 'r')
 init_high = int(file.readline())
@@ -68,7 +67,6 @@ def take_turn(direction, board):
 
 def turn_up(board, merged):
     global score
-    global shiftable
     for i in range(4):
         for j in range(4):
             shift = 0
@@ -77,7 +75,6 @@ def turn_up(board, merged):
                     if board[k][j] == 0:
                         shift += 1
                 if shift > 0:
-                    shiftable = True
                     board[i - shift][j] = board[i][j]
                     board[i][j] = 0
                 if board[i - shift - 1][j] == board[i - shift][j] and not merged[i - shift - 1][j] \
@@ -89,7 +86,6 @@ def turn_up(board, merged):
 
 def turn_down(board, merged):
     global score
-    global shiftable
     for i in range(3):
         for j in range(4):
             shift = 0
@@ -97,7 +93,6 @@ def turn_down(board, merged):
                 if board[3 - k][j] == 0:
                     shift += 1
             if shift > 0:
-                shiftable = True
                 board[2 - i + shift][j] = board[2 - i][j]
                 board[2 - i][j] = 0
             if 3 - i + shift <= 3:
@@ -111,7 +106,6 @@ def turn_down(board, merged):
 
 def turn_left(board, merged):
     global score
-    global shiftable
     for i in range(4):
         for j in range(4):
             shift = 0
@@ -132,7 +126,6 @@ def turn_left(board, merged):
 
 def turn_right(board, merged):
     global score
-    global shiftable
     for i in range(4):
         for j in range(4):
             shift = 0
@@ -140,7 +133,6 @@ def turn_right(board, merged):
                 if board[i][3 - k] == 0:
                     shift += 1
             if shift > 0:
-                shiftable = True
                 board[i][3 - j + shift] = board[i][3 - j]
                 board[i][3 - j] = 0
             if 4 - j + shift <= 3:
@@ -224,15 +216,10 @@ while run:
     #         spawn_new = False
     #         init_count += 1
 
-    if init_count < 2:
+    if spawn_new or init_count < 2:
         board_values, game_over = new_pieces(board_values)
         spawn_new = False
         init_count += 1
-    else:
-        if spawn_new and shiftable:
-            board_values, game_over = new_pieces(board_values)
-            spawn_new = False
-            init_count += 1
         
     if game_over:
         draw_over()
