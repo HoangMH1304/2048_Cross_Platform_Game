@@ -1,4 +1,6 @@
+<p align="center">
 # 2048_pygame
+</p>
 Bài Tập Lớn Python Nhóm 4 - Mã nhóm 4_9
 
 Thành viên:
