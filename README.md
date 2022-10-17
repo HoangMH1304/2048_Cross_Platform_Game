@@ -1,8 +1,7 @@
-<p align="center">
 # 2048_pygame
-</p>
+<p align="center">
 Bài Tập Lớn Python Nhóm 4 - Mã nhóm 4_9
-
+</p>
 Thành viên:
 - Mai Huy Hoàng - B20DCCN275
 - Đinh Minh Phúc - B20DCCN503
