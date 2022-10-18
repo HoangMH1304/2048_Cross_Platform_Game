@@ -1,5 +1,6 @@
 import pygame
 import random
+import asyncio
 
 pygame.init()
 
@@ -198,61 +199,64 @@ def draw_pieces(board):
 
 
 # main game loop
-run = True
 
-while run:
-    timer.tick(fps)  # thiết lập fps cho game
-    screen.fill('gray')  # thiết lập nền xám làm background
-    draw_board()
-    draw_pieces(board_values)
+async def main():
+    global colors, board_values, game_over, spawn_new, init_count, direction, score, file, init_high, high_score
+    run = True
+    global color
+    while run:
+        timer.tick(fps)  # thiết lập fps cho game
+        screen.fill('gray')  # thiết lập nền xám làm background
+        draw_board()
+        draw_pieces(board_values)
 
-    if direction != '':
-        board_values = take_turn(direction, board_values)
-        direction = ''
-        spawn_new = True
-    # if spawn_new or init_count < 2:   #(x || y) && z
-    #     if init_count >= 2 and shiftable:
-    #         board_values, game_over = new_pieces(board_values)
-    #         spawn_new = False
-    #         init_count += 1
+        if direction != '':
+            board_values = take_turn(direction, board_values)
+            direction = ''
+            spawn_new = True
 
-    if spawn_new or init_count < 2:
-        board_values, game_over = new_pieces(board_values)
-        spawn_new = False
-        init_count += 1
-        
-    if game_over:
-        draw_over()
-        if high_score > init_high:
-            file = open('high_score', 'w')
-            file.write(f'{high_score}')
-            file.close()
-            init_high = high_score
+        if spawn_new or init_count < 2:
+            board_values, game_over = new_pieces(board_values)
+            spawn_new = False
+            init_count += 1
+            
+        if game_over:
+            draw_over()
+            if high_score > init_high:
+                file = open('high_score', 'w')
+                file.write(f'{high_score}')
+                file.close()
+                init_high = high_score
 
-    for event in pygame.event.get():  # Xét các event khi game chạy
-        if event.type == pygame.QUIT:  # Khi ấn vào nút X(close) trên console
-            run = False
-        if event.type == pygame.KEYUP:
-            if event.key == pygame.K_UP:
-                direction = 'UP'
-            if event.key == pygame.K_DOWN:
-                direction = 'DOWN'
-            if event.key == pygame.K_LEFT:
-                direction = 'LEFT'
-            if event.key == pygame.K_RIGHT:
-                direction = 'RIGHT'
+        for event in pygame.event.get():  # Xét các event khi game chạy
+            if event.type == pygame.QUIT:  # Khi ấn vào nút X(close) trên console
+                run = False
+            if event.type == pygame.KEYUP:
+                if event.key == pygame.K_UP:
+                    direction = 'UP'
+                if event.key == pygame.K_DOWN:
+                    direction = 'DOWN'
+                if event.key == pygame.K_LEFT:
+                    direction = 'LEFT'
+                if event.key == pygame.K_RIGHT:
+                    direction = 'RIGHT'
 
-            if game_over:
-                if event.key == pygame.K_RETURN:
-                    board_values = [[0 for _ in range(4)] for _ in range(4)]
-                    spawn_new = True
-                    init_count = 0
-                    score = 0
-                    direction = ''
-                    game_over = False
+                if game_over:
+                    if event.key == pygame.K_RETURN:
+                        board_values = [[0 for _ in range(4)] for _ in range(4)]
+                        spawn_new = True
+                        init_count = 0
+                        score = 0
+                        direction = ''
+                        game_over = False
 
-    if score > high_score:
-        high_score = score
-    pygame.display.flip()  # cập nhật nội dung TOÀN BỘ màn hình
+        if score > high_score:
+            high_score = score
+        pygame.display.flip()  # cập nhật nội dung TOÀN BỘ màn hình
+        # pygame.quit  build for pc
+        await asyncio.sleep(0)
+        if not run:
+            pygame.quit()
+            return
 
-pygame.quit
+asyncio.run(main())
