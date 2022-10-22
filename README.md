@@ -14,3 +14,4 @@ Cách chơi: Sử dụng 4 phím điều hướng (Up, Down, Left, Right) trên 
 
 Build for web: https://maihuyhoang.itch.io/2048-g4-9v1
 
+File báo cáo: [[Nhóm4]_[9].pdf](https://github.com/HoangMH1304/2048_pygame/files/9844791/Nhom4._.9.pdf)
