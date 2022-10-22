@@ -14,4 +14,3 @@ Cách chơi: Sử dụng 4 phím điều hướng (Up, Down, Left, Right) trên 
 
 Build for web: https://maihuyhoang.itch.io/2048-g4-9v1
 
-File báo cáo: [](../../M%C3%A1y%20t%C3%ADnh/%5BNh%C3%B3m4%5D_%5B9%5D.pdf)
