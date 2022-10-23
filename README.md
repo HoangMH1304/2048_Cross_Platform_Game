@@ -12,6 +12,9 @@ Mô tả: 2048 chơi trên một lưới vuông 4×4. Mỗi lần di chuyển ng
 
 Cách chơi: Sử dụng 4 phím điều hướng (Up, Down, Left, Right) trên bàn phím máy tính để di chuyển các ô vuông. Khi hiện thông báo Game Over, ấn phím Enter để chơi lại. 
 
-Build for web: https://maihuyhoang.itch.io/2048-g4-9v1
+Ứng dụng thư viện:
+- Build for Web: Sử dụng thư viện pygbag (Link game: https://maihuyhoang.itch.io/2048-g4-9)
+- Build for PC: Sử dụng thư viện auto-py-to-exe
+- Build for Android: ...
 
 File báo cáo: [[Nhóm4]_[9].pdf](https://github.com/HoangMH1304/2048_pygame/files/9844791/Nhom4._.9.pdf)

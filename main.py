@@ -11,7 +11,7 @@ screen = pygame.display.set_mode([WIDTH, HEIGHT]) # Khởi tạo kích thước 
 pygame.display.set_caption("2048 Nhóm 4")
 timer = pygame.time.Clock()
 fps = 30
-font = pygame.font.Font('freesansbold.ttf', 24)
+font = pygame.font.Font('Assets/Fonts/FreeSansBold.ttf', 24)
 
 # 2048 game color library
 colors = {0: (204, 192, 179),   #không hiển thị số 0
@@ -190,7 +190,7 @@ def draw_pieces(board):
             pygame.draw.rect(screen, color, [20 + 95 * j, 20 + 95 * i, 75, 75], 0, 5)
             if value > 0:
                 value_len = len(str(value))
-                font = pygame.font.Font('freesansbold.ttf', 48 - (5 * value_len))
+                font = pygame.font.Font('Assets/Fonts/FreeSansBold.ttf', 48 - (5 * value_len))
                 value_text = font.render(str(value), True, value_color)
                 text_rect = value_text.get_rect(center=(j * 95 + 57, i * 95 + 57))   #hard code
                 screen.blit(value_text, text_rect)
@@ -255,8 +255,8 @@ async def main():
         pygame.display.flip()  # cập nhật nội dung TOÀN BỘ màn hình
         # pygame.quit  build for pc
         await asyncio.sleep(0)
-        if not run:
-            pygame.quit()
-            return
+        # if not run:
+        #     pygame.quit()
+        #     return
 
 asyncio.run(main())
