@@ -1,3 +1,9 @@
+try:
+    import pygame_sdl2
+    pygame_sdl2.import_as_pygame()
+except ImportError:
+    pass
+
 import pygame
 import random
 import asyncio
@@ -7,14 +13,15 @@ pygame.init()
 # initial set up: khởi tạo
 WIDTH = 400
 HEIGHT = 500
-screen = pygame.display.set_mode([WIDTH, HEIGHT]) # Khởi tạo kích thước cho cửa sổ
+# Khởi tạo kích thước cho cửa sổ
+screen = pygame.display.set_mode([WIDTH, HEIGHT])
 pygame.display.set_caption("2048 Nhóm 4")
 timer = pygame.time.Clock()
 fps = 30
 font = pygame.font.Font('Assets/Fonts/FreeSansBold.ttf', 24)
 
 # 2048 game color library
-colors = {0: (204, 192, 179),   #không hiển thị số 0
+colors = {0: (204, 192, 179),  # không hiển thị số 0
           2: (238, 228, 218),
           4: (237, 224, 200),
           8: (242, 177, 121),
@@ -26,24 +33,27 @@ colors = {0: (204, 192, 179),   #không hiển thị số 0
           512: (237, 200, 80),
           1024: (237, 197, 63),
           2048: (237, 194, 46),
-          'light text': (249, 246, 242),   #màu chữ từ 2 - 8
-          'dark text': (119, 110, 101),    #màu chữ 8 - 2048
-          'other': (0, 0, 0),               #số lớn hơn 2048
+          'light text': (249, 246, 242),  # màu chữ từ 2 - 8
+          'dark text': (119, 110, 101),  # màu chữ 8 - 2048
+          'other': (0, 0, 0),  # số lớn hơn 2048
           'bg': (187, 173, 160)}
 
 # game variables initialize
-board_values = [[0 for _ in range(4)] for _ in range(4)]  # khởi tạo ma trận toàn 0
+board_values = [[0 for _ in range(4)]
+                for _ in range(4)]  # khởi tạo ma trận toàn 0
 game_over = False
 spawn_new = True
 init_count = 0
 direction = ''
 score = 0
-file = open('2048_py/high_score', 'r')
+file = open('2048_Scripts/high_score', 'r')
 init_high = int(file.readline())
 file.close()
 high_score = init_high
 
 # draw game over and restart text (step 7)
+
+
 def draw_over():
     pygame.draw.rect(screen, 'black', [50, 200, 300, 100], 0, 10)
     game_over_text1 = font.render('Game Over!', True, 'white')
@@ -51,11 +61,13 @@ def draw_over():
     screen.blit(game_over_text1, (130, 215))
     screen.blit(game_over_text2, (70, 255))
 
-#take your turn base on direction (step 5)
+# take your turn base on direction (step 5)
+
+
 def take_turn(direction, board):
     # global score
     merged = [[False for _ in range(4)] for _ in range(4)]
-    
+
     if direction == 'UP':
         turn_up(board, merged)
     elif direction == 'DOWN':
@@ -65,6 +77,7 @@ def take_turn(direction, board):
     else:
         turn_right(board, merged)
     return board
+
 
 def turn_up(board, merged):
     global score
@@ -81,9 +94,10 @@ def turn_up(board, merged):
                 if board[i - shift - 1][j] == board[i - shift][j] and not merged[i - shift - 1][j] \
                         and not merged[i - shift][j]:
                     board[i - shift - 1][j] *= 2
-                    score += board[i - shift - 1][j] 
+                    score += board[i - shift - 1][j]
                     board[i - shift][j] = 0
                     merged[i - shift - 1][j] = True
+
 
 def turn_down(board, merged):
     global score
@@ -98,12 +112,13 @@ def turn_down(board, merged):
                 board[2 - i][j] = 0
             if 3 - i + shift <= 3:
                 if board[2 - i + shift][j] == board[3 - i + shift][j] and not merged[3 - i + shift][j] \
-                            and not merged[2 - i + shift][j]:
+                        and not merged[2 - i + shift][j]:
                     board[3 - i + shift][j] *= 2
                     score += board[3 - i + shift][j]
                     # score += board[3 - i + shift][j]
                     board[2 - i + shift][j] = 0
                     merged[3 - i + shift][j] = True
+
 
 def turn_left(board, merged):
     global score
@@ -118,12 +133,13 @@ def turn_left(board, merged):
                 board[i][j - shift] = board[i][j]
                 board[i][j] = 0
             if board[i][j - shift] == board[i][j - shift - 1] and not merged[i][j - shift - 1] \
-                        and not merged[i][j - shift]:
+                    and not merged[i][j - shift]:
                 board[i][j - shift - 1] *= 2
                 score += board[i][j - shift - 1]
                 # score += board[i][j - shift - 1]
                 board[i][j - shift] = 0
                 merged[i][j - shift - 1] = True
+
 
 def turn_right(board, merged):
     global score
@@ -138,23 +154,26 @@ def turn_right(board, merged):
                 board[i][3 - j] = 0
             if 4 - j + shift <= 3:
                 if board[i][4 - j + shift] == board[i][3 - j + shift] and not merged[i][4 - j + shift] \
-                            and not merged[i][3 - j + shift]:
+                        and not merged[i][3 - j + shift]:
                     board[i][4 - j + shift] *= 2
                     score += board[i][4 - j + shift]
                     board[i][3 - j + shift] = 0
                     merged[i][4 - j + shift] = True
 
 # spawn in new pieces randomly when turns start: sinh ngẫu nhiên số và cập nhật lại bảng trong 1 lần
+
+
 def new_pieces(board):
-    count = 0 
+    count = 0
     full = True
-    while any(0 in row for row in board) and count < 1: #kiểm tra xem có thể sinh số thêm được không
+    # kiểm tra xem có thể sinh số thêm được không
+    while any(0 in row for row in board) and count < 1:
         row = random.randint(0, 3)
         col = random.randint(0, 3)
         if board[row][col] == 0:
             # Sẽ có 10% sinh ra số 4, còn lại chỉ sinh ra số 2
             count += 1
-            full = False       
+            full = False
             if random.randint(1, 10) == 1:
                 board[row][col] = 4
             else:
@@ -162,6 +181,8 @@ def new_pieces(board):
     return board, full
 
 # draw background for the board
+
+
 def draw_board():
     rect = pygame.Rect(0, 0, 400, 400)  # left, top, weight, height
     pygame.draw.rect(screen, colors['bg'], rect, 0, 10)
@@ -174,6 +195,8 @@ def draw_board():
     # print(f'center={rect.center}')
 
 # draw tiles for game
+
+
 def draw_pieces(board):
     for i in range(4):
         for j in range(4):
@@ -187,14 +210,18 @@ def draw_pieces(board):
                 color = colors[value]
             else:
                 color = colors['other']
-            pygame.draw.rect(screen, color, [20 + 95 * j, 20 + 95 * i, 75, 75], 0, 5)
+            pygame.draw.rect(
+                screen, color, [20 + 95 * j, 20 + 95 * i, 75, 75], 0, 5)
             if value > 0:
                 value_len = len(str(value))
-                font = pygame.font.Font('Assets/Fonts/FreeSansBold.ttf', 48 - (5 * value_len))
+                font = pygame.font.Font(
+                    'Assets/Fonts/FreeSansBold.ttf', 48 - (5 * value_len))
                 value_text = font.render(str(value), True, value_color)
-                text_rect = value_text.get_rect(center=(j * 95 + 57, i * 95 + 57))   #hard code
+                text_rect = value_text.get_rect(
+                    center=(j * 95 + 57, i * 95 + 57))  # hard code
                 screen.blit(value_text, text_rect)
-                pygame.draw.rect(screen, 'black', [j * 95 + 20, i * 95 + 20, 75, 75], 2, 5)
+                pygame.draw.rect(screen, 'black', [
+                                 j * 95 + 20, i * 95 + 20, 75, 75], 2, 5)
         # print()
 
 
@@ -219,7 +246,7 @@ async def main():
             board_values, game_over = new_pieces(board_values)
             spawn_new = False
             init_count += 1
-            
+
         if game_over:
             draw_over()
             if high_score > init_high:
@@ -229,8 +256,20 @@ async def main():
                 init_high = high_score
 
         for event in pygame.event.get():  # Xét các event khi game chạy
-            if event.type == pygame.QUIT:  # Khi ấn vào nút X(close) trên console
+            # Khi ấn vào nút X(close) trên console
+            if event.type == pygame.QUIT:
                 run = False
+            # if event.type == pygame.MOUSEMOTION:
+            #     if event.rel[0] > 0 and event.rel[1] == 0:
+            #         direction = "RIGHT"
+            #     if event.rel[0] < 0 and event.rel[1] == 0:
+            #         direction = "LEFT"
+            #     if event.rel[0] == 0 and event.rel[1] > 0:
+            #         direction = "UP"
+            #     if event.rel[0] == 0 and event.rel[1] < 0:
+            #         direction = "DOWN"
+
+
             if event.type == pygame.KEYUP:
                 if event.key == pygame.K_UP:
                     direction = 'UP'
@@ -243,7 +282,8 @@ async def main():
 
                 if game_over:
                     if event.key == pygame.K_RETURN:
-                        board_values = [[0 for _ in range(4)] for _ in range(4)]
+                        board_values = [
+                            [0 for _ in range(4)] for _ in range(4)]
                         spawn_new = True
                         init_count = 0
                         score = 0
