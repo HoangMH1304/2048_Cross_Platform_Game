@@ -173,6 +173,28 @@ class Board(Widget):
             self.move(key_vectors[0])
         elif v.y < 0:
             self.move(key_vectors[2])
+        # self.move(1, 0)/
+        
+        if v.x == 0:
+            print("Hoang: left") 
+            self.move(1, 0)
+        if v.y == 0:
+            print("Hoang: right") 
+            self.move(-1, 0)
+
+        if v.x > 0:
+            print("Hoang: " + v.x) 
+            self.move(1, 0)
+        elif v.x < 0:
+            self.move(-1, 0)
+            print("Hoang: " + v.x) 
+        elif v.y > 0:
+            self.move(0, 1)
+            print("Hoang: " + v.y) 
+        elif v.y < 0:
+            self.move(0. -1)
+            print("Hoang: " + v.y) 
+
 
         # if v.x > 0:
         #     self.move(*key_vectors[Keyboard.keycodes['right']])
