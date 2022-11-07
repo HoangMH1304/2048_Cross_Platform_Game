@@ -20,4 +20,4 @@ Cách chơi: Sử dụng 4 phím điều hướng trên bàn phím hoặc thao t
 <p align="center">
 Bảng báo cáo
 </p>
-![baocao](https://user-images.githubusercontent.com/114207068/200367651-e53afb7e-c8ea-4932-8e30-48b4c9717b5d.jpg)
+![Alt text](Assets/Report/baocao.jpg)
