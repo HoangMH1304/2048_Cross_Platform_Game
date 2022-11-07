@@ -73,11 +73,7 @@ class Board(Widget):
         self.b[x][y] = tile
         self.add_widget(tile)
         if len(empty_cells) == 1 and self.is_deadlocked():
-            print('Game Over(board is deadlocked)')
-            # board = self.root.ids.board
-            # board.reset()
-            # Window.bind(on_key_down=board.on_key_down)
-            # self.reset()
+            print('Game Over(board is deadlocked)') #need restart
         self.moving = False
 
     def reset(self):
@@ -151,62 +147,26 @@ class Board(Widget):
 
     def on_key_down(self, window, key, *args):
         if key in key_vectors:
-            # self.move(0, 1)
             self.move(*key_vectors[key])
 
-    def on_touch_down(self, touch):
+    def on_touch_up(self, touch):
+        # swipe = touch.pos
         v = Vector(touch.pos) - Vector(touch.opos)
         # if v.length < 20:
-        # if touch.pos - touch.opos < 20:
+        #  if touch.pos - touch.opos < 20:
         #     return
         if abs(v.x) > abs(v.y):
             v.y = 0
         else:
             v.x = 0
-        
-
         if v.x > 0:
-            self.move(0, 1)
-        elif v.x < 0:
-            self.move(key_vectors[3])
-        elif v.y > 0:
-            self.move(key_vectors[0])
-        elif v.y < 0:
-            self.move(key_vectors[2])
-        # self.move(1, 0)/
-        
-        if v.x == 0:
-            print("Hoang: left") 
-            self.move(1, 0)
-        if v.y == 0:
-            print("Hoang: right") 
-            self.move(-1, 0)
-
-        if v.x > 0:
-            print("Hoang: " + v.x) 
             self.move(1, 0)
         elif v.x < 0:
             self.move(-1, 0)
-            print("Hoang: " + v.x) 
         elif v.y > 0:
             self.move(0, 1)
-            print("Hoang: " + v.y) 
         elif v.y < 0:
-            self.move(0. -1)
-            print("Hoang: " + v.y) 
-
-
-        # if v.x > 0:
-        #     self.move(*key_vectors[Keyboard.keycodes['right']])
-        # elif v.x < 0:
-        #     self.move(*key_vectors[Keyboard.keycodes['left']])
-        # elif v.y > 0:
-        #     self.move(*key_vectors[Keyboard.keycodes['up']])
-        # elif v.y < 0:
-        #     self.move(*key_vectors[Keyboard.keycodes['down']])
-        # self.move((v.normalize()))
-    
-
+            self.move(0, -1)
 
 class GameApp(App):
     def on_start(self):
@@ -214,8 +174,6 @@ class GameApp(App):
         board.reset()
         Window.bind(on_key_down=board.on_key_down)
 
-    
-        
 
 
 if __name__ == '__main__':
