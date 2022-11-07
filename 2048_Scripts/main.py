@@ -270,6 +270,39 @@ async def main():
             #         direction = "DOWN"
 
 
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                global opos 
+                opos = event.pos
+
+            if event.type == pygame.MOUSEBUTTONUP:
+                print("Hoang opos: ", opos)
+                print("Hoang pos: ", event.pos)
+                # v = event.pos - opos
+                # v = (event.pos[0] - opos[0], event.pos[1] - opos[1])
+                v = pygame.Vector2(event.pos) - pygame.Vector2(opos)
+                print("vector swipe: ", v)
+                
+                if abs(v.x) > abs(v.y):
+                    v.y = 0
+                    if abs(v.x) < 50: continue
+                else:
+                    v.x = 0
+                    if abs(v.y) < 50: continue
+
+                
+                if v.x > 0:
+                    direction = 'RIGHT'
+                    # self.move(1, 0)
+                elif v.x < 0:
+                    direction = 'LEFT'
+                    # self.move(-1, 0)
+                elif v.y > 0:
+                    direction = 'DOWN'
+                    # self.move(0, 1)
+                elif v.y < 0:
+                    direction = 'UP'
+                    # self.move(0, -1)
+
             if event.type == pygame.KEYUP:
                 if event.key == pygame.K_UP:
                     direction = 'UP'
@@ -279,6 +312,8 @@ async def main():
                     direction = 'LEFT'
                 if event.key == pygame.K_RIGHT:
                     direction = 'RIGHT'
+                
+               
 
                 if game_over:
                     if event.key == pygame.K_RETURN:
