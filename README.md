@@ -17,7 +17,6 @@ Cách chơi: Sử dụng 4 phím điều hướng trên bàn phím hoặc thao t
 - Build for PC: Sử dụng thư viện auto-py-to-exe
 - Build for Android: Sử dụng thư viện kivy
 
-<p align="center">
-Bảng báo cáo
-</p>
-![Alt text](Assets/Report/baocao.jpg)
+Bảng báo cáo:
+![baocao](https://user-images.githubusercontent.com/114207068/200369901-aa2f7635-1ee8-4587-b709-037905d0308e.jpg)
+
