@@ -14,7 +14,7 @@ Cách chơi: Sử dụng 4 phím điều hướng trên bàn phím hoặc thao t
 
 Ứng dụng thư viện:
 - Build for Web: Sử dụng thư viện pygbag (Link game: https://maihuyhoang.itch.io/2048-g4-9)
-- Build for PC: Sử dụng thư viện auto-py-to-exe
+- Build for PC: Sử dụng thư viện auto-py-to-exe (Khởi chạy: main.exe)
 - Build for Android: Sử dụng thư viện kivy
 
 Bảng báo cáo:
