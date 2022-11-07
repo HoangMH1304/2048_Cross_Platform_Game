@@ -17,4 +17,7 @@ Cách chơi: Sử dụng 4 phím điều hướng trên bàn phím hoặc thao t
 - Build for PC: Sử dụng thư viện auto-py-to-exe
 - Build for Android: Sử dụng thư viện kivy
 
-File báo cáo: [[Nhóm4]_[9].pdf](https://github.com/HoangMH1304/2048_pygame/files/9844791/Nhom4._.9.pdf)
+<p align="center">
+Bảng báo cáo
+</p>
+![baocao](https://user-images.githubusercontent.com/114207068/200367651-e53afb7e-c8ea-4932-8e30-48b4c9717b5d.jpg)
