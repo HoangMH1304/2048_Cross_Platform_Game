@@ -259,26 +259,12 @@ async def main():
             # Khi ấn vào nút X(close) trên console
             if event.type == pygame.QUIT:
                 run = False
-            # if event.type == pygame.MOUSEMOTION:
-            #     if event.rel[0] > 0 and event.rel[1] == 0:
-            #         direction = "RIGHT"
-            #     if event.rel[0] < 0 and event.rel[1] == 0:
-            #         direction = "LEFT"
-            #     if event.rel[0] == 0 and event.rel[1] > 0:
-            #         direction = "UP"
-            #     if event.rel[0] == 0 and event.rel[1] < 0:
-            #         direction = "DOWN"
-
 
             if event.type == pygame.MOUSEBUTTONDOWN:
                 global opos 
                 opos = event.pos
 
             if event.type == pygame.MOUSEBUTTONUP:
-                print("Hoang opos: ", opos)
-                print("Hoang pos: ", event.pos)
-                # v = event.pos - opos
-                # v = (event.pos[0] - opos[0], event.pos[1] - opos[1])
                 v = pygame.Vector2(event.pos) - pygame.Vector2(opos)
                 print("vector swipe: ", v)
                 
@@ -292,16 +278,12 @@ async def main():
                 
                 if v.x > 0:
                     direction = 'RIGHT'
-                    # self.move(1, 0)
                 elif v.x < 0:
                     direction = 'LEFT'
-                    # self.move(-1, 0)
                 elif v.y > 0:
                     direction = 'DOWN'
-                    # self.move(0, 1)
                 elif v.y < 0:
                     direction = 'UP'
-                    # self.move(0, -1)
 
             if event.type == pygame.KEYUP:
                 if event.key == pygame.K_UP:
