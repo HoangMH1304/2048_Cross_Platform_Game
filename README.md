@@ -19,4 +19,6 @@ Cách chơi: Sử dụng 4 phím điều hướng trên bàn phím hoặc thao t
 
 Bảng báo cáo:
 ![baocao](https://user-images.githubusercontent.com/114207068/200369901-aa2f7635-1ee8-4587-b709-037905d0308e.jpg)
+![0003](https://user-images.githubusercontent.com/83877650/201577434-de810811-c53e-4952-b2c6-0ab45abcdad6.jpg)
+
 
