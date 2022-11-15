@@ -344,7 +344,7 @@ def draw_pieces_4(board):
         for j in range(4):
             value = board[i][j]
             if value == 1:
-                pygame.draw.rect(screen, (0, 0, 0), [20 + 95 * j, 20 + 95 * i, 75, 75], 0, 5)
+                pygame.draw.rect(screen, 'yellow', [20 + 95 * j, 20 + 95 * i, 75, 75], 0, 5)
                 continue
             if value > 8:
                 value_color = colors['light text']
@@ -372,7 +372,7 @@ def draw_pieces_5(board):
         for j in range(5):
             value = board[i][j]
             if value == 1:
-                pygame.draw.rect(screen, (0, 0, 0), [10 + 78 * j, 10 + 78 * i, 68, 68], 0, 5)
+                pygame.draw.rect(screen, 'yellow', [10 + 78 * j, 10 + 78 * i, 68, 68], 0, 5)
                 continue
             if value > 8:
                 value_color = colors['light text']
