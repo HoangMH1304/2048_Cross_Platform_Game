@@ -75,7 +75,7 @@ def init():
 def take_turn(direction, board):
     merged = [[False for _ in range(matrix_size)] for _ in range(matrix_size)]
     if block: merged[block_tile_row_index][block_tile_col_index] = True
-    print('isBlock: ', block)
+    #('isBlock: ', block)
     if direction == 'UP':
         turn_up(board, merged)
     elif direction == 'DOWN':
@@ -105,7 +105,7 @@ def check_turn_up(board):
     return idx
 
 def turn_up(board, merged):
-    print('choose col: ', check_turn_up(board))
+    #print('choose col: ', check_turn_up(board))
     global score
     n = check_turn_up(board)
     if n == -1: return
@@ -148,7 +148,7 @@ def check_turn_down(board):
     return idx
 
 def turn_down(board, merged):
-    print('choose col: ', check_turn_down(board))
+    #print('choose col: ', check_turn_down(board))
     n = check_turn_down(board)
     if n == -1: return
     global score
@@ -192,7 +192,7 @@ def check_turn_left(board):
     return idx
 
 def turn_left(board, merged):
-    print('choose row: ', check_turn_left(board))
+    #print('choose row: ', check_turn_left(board))
     global score
     n = check_turn_left(board)
     if n == -1: return
@@ -235,7 +235,7 @@ def check_turn_right(board):
     return idx
 
 def turn_right(board, merged):
-    print('choose row: ', check_turn_right(board))
+    #print('choose row: ', check_turn_right(board))
     n = check_turn_right(board)
     if n == -1: return
     global score
@@ -274,7 +274,7 @@ def new_pieces(board):
             # Sẽ có 10% sinh ra số 4, còn lại chỉ sinh ra số 2
             count += 1
             full = False
-            if random.randint(1, 10) == 1:
+            if random.randint(1, 8) == 1:
                 board[row][col] = 4
                 # print('choose tile 4: ', row, col)
             else:
@@ -443,22 +443,22 @@ async def main():
                 opos = event.pos
                 if not next_scene:
                     if rect_op1.collidepoint(event.pos):
-                        print('option 1')
+                        #print('option 1')
                         next_scene = True
                         matrix_size = 4
                         block = False
                     elif rect_op2.collidepoint(event.pos):
-                        print('option 2')
+                        #print('option 2')
                         next_scene = True
                         matrix_size = 5
                         block = False
                     elif rect_op3.collidepoint(event.pos):
-                        print('option 3')
+                        #print('option 3')
                         next_scene = True
                         matrix_size = 4
                         block = True
                     else:
-                        print('option 4')
+                        #print('option 4')
                         next_scene = True
                         matrix_size = 5
                         block = True
@@ -485,7 +485,7 @@ async def main():
 
             if event.type == pygame.KEYUP:
                 if event.key == pygame.K_0:
-                    print('option 1')
+                    #print('option 1')
                     next_scene = True
                     matrix_size = 4
                     block = False
